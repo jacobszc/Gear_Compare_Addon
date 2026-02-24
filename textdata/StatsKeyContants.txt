@@ -1,0 +1,23 @@
+Stat	Key Constant  ------------ Can be used to index string of stats aswell as to print name of the stat. 
+Strength	ITEM_MOD_STRENGTH_SHORT
+Agility	ITEM_MOD_AGILITY_SHORT
+Stamina	ITEM_MOD_STAMINA_SHORT
+Intellect	ITEM_MOD_INTELLECT_SHORT
+Spirit	ITEM_MOD_SPIRIT_SHORT
+🛡️ Secondary / Combat Stats
+Stat	Key Constant
+Armor	RESISTANCE0_NAME (special case)
+Defense	ITEM_MOD_DEFENSE_SKILL_RATING_SHORT
+Dodge	ITEM_MOD_DODGE_RATING_SHORT
+Parry	ITEM_MOD_PARRY_RATING_SHORT
+Block	ITEM_MOD_BLOCK_RATING_SHORT
+Hit Rating	ITEM_MOD_HIT_RATING_SHORT
+Crit Rating	ITEM_MOD_CRIT_RATING_SHORT
+Haste Rating	ITEM_MOD_HASTE_RATING_SHORT
+Expertise	ITEM_MOD_EXPERTISE_RATING_SHORT
+🔥 Spell Stats
+Stat	Key Constant
+Spell Power	ITEM_MOD_SPELL_POWER_SHORT
+Healing	ITEM_MOD_HEALING_DONE_SHORT (older Classic style)
+Mana per 5	ITEM_MOD_MANA_REGENERATION_SHORT
+Spell Penetration	ITEM_MOD_SPELL_PENETRATION_SHORT

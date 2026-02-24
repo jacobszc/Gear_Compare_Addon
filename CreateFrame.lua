@@ -1,20 +1,19 @@
 
 ---- create a frame for which to spawn a wiki off of to display our info on whether an item is an upgrade or not ---------------
 
-print("GearCompare loaded")
-print("GearCompare loaded")
-print("GearCompare loaded")
-print("GearCompare loaded")
-print("GearCompare loaded")
- 
+print(ITEM_MOD_INTELLECT_SHORT)
+
 
 local frame = CreateFrame("Frame", "GearCompareFrame", UIParent)
+
+-- Frame has all methods of 3 parents. Object -> UiObject -> Region -> Frame
 
 
 frame:SetWidth(300)
 frame:SetHeight(150)
+frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0) -- inherited from region and sets frame to be postioned exactly the same as parent 
 
-frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+-- setX methods are inherited from region
 
 local bg = frame:CreateTexture(nil, "BACKGROUND")
 bg:SetAllPoints(frame)
@@ -33,8 +32,8 @@ for i = 1, 17 do
         if stats then
             DEFAULT_CHAT_FRAME:AddMessage(
                 "Your item has " ..
-                tostring(stats["ITEM_MOD_STAMINA_SHORT"] or 0) ..
-                " " .. ITEM_MOD_STAMINA_SHORT .. "."
+                tostring(stats["ITEM_MOD_INTELLECT_SHORT"] or 0) ..
+                " " .. ITEM_MOD_INTELLECT_SHORT .. "."
             )
         end
     end

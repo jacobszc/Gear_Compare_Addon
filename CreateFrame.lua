@@ -1,6 +1,9 @@
 
 local frame = CreateFrame("Frame", "GearCompareFrame", UIParent)
 
+
+
+
 -- Frame has all methods of 3 parents. Object -> UiObject -> Region -> Frame
 
 frame:EnableMouse(true)
@@ -20,4 +23,11 @@ bg:SetTexture(1, 0, 0, 0.2)
 ------------ get the stats of the equiped item that we hover over and possibly hold a key--------------------------------------------------------------------------------
 
 -- get stats of hover over item in bag ---
+
+GameTooltip:HookScript("OnTooltipSetItem", function(self)
+    local name, link = self:GetItem()
+    if link then
+        print("Hovered item:", link)
+    end
+end)
 

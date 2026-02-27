@@ -1,8 +1,8 @@
 function MyFrame_OnEnter()
-  DEFAULT_CHAT_FRAME:AddMessage("Frame Entered")
+  ChatFrame1:AddMessage("Frame Entered")
 end
 
 function MyFrame_OnLeave()
-  DEFAULT_CHAT_FRAME:AddMessage("Frame Exited")
+  ChatFrame1:AddMessage("Frame Exited")
  
 end

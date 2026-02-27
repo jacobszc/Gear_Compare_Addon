@@ -1,1 +1,155 @@
-Widget ----> UIObjectg. This is the base object for which Frame and all children there in inherit from. It contains methods to interact with wow UI.
+Widget ----> UIObject. This is the base object for which Frame and all children there in inherit from. It contains methods to interact with wow UI.
+
+All class names and methods us CamelCase
+
+              {FontInstance}                       --------> {ToolTip}
+{Object} ---> {UIObject} --------> {Frame}         --------> {Button}
+              {Region}         {LayeredRegion}     --------> {MessageFrame}
+           
+
+
+
+Class UIObject {               Class 
+
+    GetAlpha()
+    SetAlpha()       
+    GetName()
+    ...
+}
+
+
+All derviates of UIObject also inherit the following
+
+class AnimationGroup {          
+   
+   Pause()
+   Play()
+   Stop()
+   ...
+}
+
+--- REgion defines the structure of the frame and its methods will likjely be used the msot often so i included all of them
+class Region {
+    ClearAllPoints() - Clear all attachment points for this object.
+CreateAnimationGroup(["name"[,"inheritsFrom"]]) - Create and return a new AnimationGroup as a child of this Region. (added 3.1.0)
+GetAnimationGroups() - Returns all AnimationGroups that are children of this Region. (added 3.1.0)
+GetBottom() - Get the y location of the bottom edge of this frame - Moved in 1.10.
+GetCenter() - Get the coordinates of the center of this frame - Moved in 1.10.
+GetHeight() - Get the height of this object.
+GetLeft() - Get the x location of the left edge of this frame - Moved in 1.10.
+GetNumPoints() - Get the number of anchor points for this frame (added 1.10)
+GetPoint(pointNum) - Get details for an anchor point for this frame (point, relativeTo, relativePoint, xofs, yofs) (added 1.10)
+GetRect() - Get frame's left, bottom, width, height.
+GetRight() - Get the x location of the right edge of this frame - Moved in 1.10.
+GetSize() - Get the width and height of the frame
+GetTop() - Get the y location of the top edge of this frame - Moved in 1.10.
+GetWidth() - Get the width of this object.
+Hide() - Set this object to hidden (it and all of its children will disappear).
+IsDragging() - True if this Region or its Parent is being dragged. (added 3.1.0)
+IsProtected() - Determine if this object can be manipulated in certain ways by tainted code in combat or not
+IsShown() - Determine if this object is shown (would be visible if its parent was visible).
+IsVisible() - Get whether the object is visible on screen (logically (IsShown() and GetParent():IsVisible()));
+SetAllPoints(frame or "frameName") - Set all anchors to match edges of specified frame - Moved in 1.10.
+SetHeight(height) - Set the height of the object.
+SetParent(parent or "parentName") - Set the parent for this frame - Moved in 1.10.
+SetPoint("point","relativeFrame" or relativeObject,"relativePoint"[, xOfs, yOfs]) - Set an attachment point of this object - Updated in 1.10. Since 2.2 cooordinates are now relative to the closest anchor point
+SetSize(width, height) - Set the region's width and height
+SetWidth(width) - Set the width of the object.
+Show() - Set this object to shown (it will appear if its parent is visible).
+StopAnimating() - Stops any active animations on the Region and its children. (added 3.1.0)
+
+
+}
+
+
+class FontInstance {
+    GetFont() - Return the font file, height, and flags.
+GetFontObject() - Return the 'parent' Font object, or nil if none.
+GetJustifyH() - Return the horizontal text justification.
+GetJustifyV() - Return thevertical text justification.
+GetShadowColor() - Returns the color of text shadow (r, g, b, a).
+GetShadowOffset() - Returns the text shadow offset (x, y).
+GetSpacing() - Returns the text spacing.
+GetTextColor() - Returns the default text color.
+SetFont("path", height[,"flags"]) - Sets the font to use for text, returns 1 if the path was valid, nil otherwise (no change occurs).
+SetFontObject(fontObject) - Sets the 'parent' Font object from which this object inherits properties.
+SetJustifyH("justifyH") - Sets horizontal text justification ("LEFT","RIGHT", or "CENTER")
+SetJustifyV("justifyV") - Sets vertical text justification ("TOP","BOTTOM", or "MIDDLE")
+SetShadowColor(r, g, b[, a]) - Sets the text shadow color.
+SetShadowOffset(x, y) - Sets the text shadow offset.
+SetSpacing(spacing) - Sets the spacing between lines of text in the object.
+SetTextColor(r, g, b[, a]) - Sets the default text color.
+
+
+}
+
+
+
+Frame is the class we will most often instatiate to inherit all parent methods as it is how we create a definable region to siplay info.
+
+newFrame = CreateFrame("frameType"[, "frameName"[, parentFrame[, "inheritsFrame"]]]); // usage
+
+Arguments
+frameType -> String -> Type of the frame to be created (XML tag name): "Frame", "Button", etc. See UIOBJECT_Frame
+frameName  -> String -> Name of the newly created frame. If nil, no frame name is assigned. The function will also set a global variable of this name to point to the newly created frame.
+parentFrame -> Frame - The frame object that will be used as the created Frame's parent (cannot be a string!) Does not default to UIParent if given nil.
+inheritsFrame -> String - a comma-delimited list of names of virtual frames to inherit from (the same as in XML). If nil, no frames will be inherited. These frames cannot be frames that were created using this function, they must be created using XML with virtual="true" in the tag.
+
+
+
+Class Frame {
+
+
+
+}
+
+
+some useful frame derivatives include messageFrame, button and ToolTip which well need for this project. Think of boith as frames that have there own moethods to format them properly.
+
+
+class Button {
+    Click() - Execute the click action of the button.
+Disable() - Disable the Button so that it cannot be clicked.
+Enable() - Enable to the Button so that it may be clicked.
+GetButtonState() - Return the current state ("PUSHED","NORMAL") of the Button.
+GetDisabledFontObject() - Return the font object for the Button when disabled (added 1.10)
+REMOVED GetDisabledTextColor() - Get the color of this button's text when disabled (r, g, b, a) (added 1.11)(removed 3.0.2)
+GetDisabledTexture() - Get the texture for this button when disabled (added 1.11)
+REMOVED GetFont() - Returns the font, size, and flags currently used for display on the Button. (removed 3.0.2)
+GetFontString() - Get this button's label FontString (added 1.11)
+GetHighlightFontObject() - Return the font object for the Button when highlighted (added 1.10)
+REMOVED GetHighlightTextColor() - Get the color of this button's text when highlighted (r, g, b, a) (added 1.11)(removed 3.0.2)
+GetHighlightTexture() - Get the texture for this button when highlighted (added 1.11)
+GetNormalTexture() - Get the normal texture for this button (added 1.11)
+GetNormalFontObject() - Get the Normal Font Object of the button (added 3.0.0)
+GetPushedTextOffset() - Get the text offset when this button is pushed (x, y) (added 1.11)
+GetPushedTexture() - Get the texture for this button when pushed (added 1.11)
+GetText() - Get the text label for the Button.
+REMOVED GetTextColor() - Get the normal color of this button's text (r, g, b, a) (added 1.11) (removed 3.0.2)
+REMOVED GetTextFontObject() - Return the font object for the Button's normal text (added 1.10)(removed 3.0.2)
+GetTextHeight() - Get the height of the Button's text.
+GetTextWidth() - Get the width of the Button's text.
+IsEnabled() - Determine whether the Button is enabled.
+LockHighlight() - Set the Button to always be drawn highlighted.
+RegisterForClicks("clickType"[,"clickType"...]) - Specify which mouse button up/down actions cause receive an OnClick notification.
+SetButtonState("state"[, lock]) - Set the state of the Button ("PUSHED", "NORMAL") and whether it is locked.
+SetDisabledFontObject([font]) - Set the font object for settings when disabled (added 1.10)
+REMOVED SetDisabledTextColor(r, g, b[, a]) - Set the disabled text color for the Button. (removed 4.0.1)
+SetDisabledTexture(texture or "texturePath") - Set the disabled texture for the Button (updated in 1.10)
+SetFont("font", size[,"flags"]) - Set the font to use for display.
+SetFontString(fontString) - Set the button's label FontString (added 1.11)
+SetFormattedText("formatstring"[, ...]) - Set the formatted text label for the Button. (added 2.3)
+SetHighlightFontObject([font]) - Set the font object for settings when highlighted (added 1.10)
+REMOVED SetHighlightTextColor(r, g, b[, a]) - Set the highlight text color for the Button. (removed 4.0.1)
+SetHighlightTexture(texture or "texturePath"[,alphaMode]) - Set the highlight texture for the Button (updated in 1.10)
+SetNormalTexture(texture or "texturePath") - Set the normal texture for the Button (updated in 1.10)
+SetNormalFontObject(FontString) - Replaces SetTextFontObject (updated in 3.0)
+SetPushedTextOffset(x, y) - Set the text offset for this button when pushed (added 1.11)
+SetPushedTexture(texture or "texturePath") - Set the pushed texture for the Button (updated in 1.10)
+SetText("text") - Set the text label for the Button.
+REMOVED SetTextColor(r, g, b) - Set the text color for the Button. (removed 3.0.2)
+REMOVED SetTextFontObject([font]) - Set the font object to get settings from for this Button's normal state (added 1.10)(removed 3.0.2)
+UnlockHighlight() - Set the Button to not always be drawn highlighted.
+
+
+}

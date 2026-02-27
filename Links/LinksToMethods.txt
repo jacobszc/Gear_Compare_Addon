@@ -1,3 +1,5 @@
-widget apis: https://addonstudio.org/wiki/WoW:Widget_API
+widget apis ---> https://addonstudio.org/wiki/WoW:Widget_API
 
-createFrame() method: https://addonstudio.org/wiki/WoW:API_CreateFrame
+createFrame() method ===> https://addonstudio.org/wiki/WoW:API_CreateFrame
+
+actualk wow APIS --->https://addonstudio.org/wiki/WoW:World_of_Warcraft_API

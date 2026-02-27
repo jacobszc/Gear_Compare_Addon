@@ -1,17 +1,15 @@
 
----- create a frame for which to spawn a wiki off of to display our info on whether an item is an upgrade or not ---------------
-
-print(ITEM_MOD_INTELLECT_SHORT)
-
-
 local frame = CreateFrame("Frame", "GearCompareFrame", UIParent)
 
 -- Frame has all methods of 3 parents. Object -> UiObject -> Region -> Frame
 
-
+frame:EnableMouse(true)
 frame:SetWidth(300)
 frame:SetHeight(150)
 frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0) -- inherited from region and sets frame to be postioned exactly the same as parent 
+frame:EnableMouse(true)
+frame:SetScript("OnEnter", MyFrame_OnEnter)
+frame:SetScript("OnLeave", MyFrame_OnLeave)
 
 -- setX methods are inherited from region
 
@@ -23,19 +21,3 @@ bg:SetTexture(1, 0, 0, 0.2)
 
 -- get stats of hover over item in bag ---
 
-local item = GetContainerItemLink(bag,slot)
-
-
-    local link = GetInventoryItemLink("player", i)
-
-    if link then
-        local stats = GetItemStats(link)
-
-        if stats then
-            DEFAULT_CHAT_FRAME:AddMessage(
-                "Your item has " ..
-                tostring(stats["ITEM_MOD_INTELLECT_SHORT"] or 0) ..
-                " " .. ITEM_MOD_INTELLECT_SHORT .. "."
-            )
-        end
-    end

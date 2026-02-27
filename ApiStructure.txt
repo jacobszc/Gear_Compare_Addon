@@ -1,0 +1,1 @@
+Widget ----> UIObjectg. This is the base object for which Frame and all children there in inherit from. It contains methods to interact with wow UI.

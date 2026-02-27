@@ -17,13 +17,15 @@ frame:SetPoint("CENTER", UIParent, "CENTER", 0, 0) -- inherited from region and 
 
 local bg = frame:CreateTexture(nil, "BACKGROUND")
 bg:SetAllPoints(frame)
-bg:SetTexture(1, 0, 0, 0.8) 
+bg:SetTexture(1, 0, 0, 0.2) 
 
 ------------ get the stats of the equiped item that we hover over and possibly hold a key--------------------------------------------------------------------------------
 
+-- get stats of hover over item in bag ---
+
+local item = GetContainerItemLink(bag,slot)
 
 
-for i = 1, 17 do
     local link = GetInventoryItemLink("player", i)
 
     if link then
@@ -37,4 +39,3 @@ for i = 1, 17 do
             )
         end
     end
-end
